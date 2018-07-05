@@ -1,0 +1,8 @@
+
+FROM cirepo/nix:2.0.4_bionic
+
+
+COPY --from=tmp/dumper:latest /data/root /data/root
+
+
+#RUN sudo chown -R $(whoami):$(id -gn) /data/root/home/$(whoami)

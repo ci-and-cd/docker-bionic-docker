@@ -1,0 +1,10 @@
+
+FROM cirepo/nix:2.0.4_bionic
+
+
+COPY --chown=ubuntu:ubuntu docker /home/ubuntu/data
+
+
+# Process image layers
+RUN cd /home/$(whoami) \
+  && ./data/dump.sh
