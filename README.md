@@ -9,6 +9,8 @@ Dockerfile [ci-and-cd/docker-bionic-docker on Github](https://github.com/ci-and-
 ## Use this image as a “stage” in multi-stage builds
 
 ```dockerfile
-FROM alpine:3.7
-COPY --from=cirepo/bionic-docker:18.05.0~ce~3-0 /data/root /
+
+FROM ubuntu:18.04
+COPY --from=cirepo/bionic-docker:18.05.0 /data/root /
+
 ```
