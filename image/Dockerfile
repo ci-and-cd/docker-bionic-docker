@@ -50,8 +50,6 @@ COPY --chown=root:root docker /data
 #${ARIA2C_DOWNLOAD} -d /tmp -o docker_ubuntu_gpg https://download.docker.com/linux/ubuntu/gpg && apt-key add /tmp/docker_ubuntu_gpg
 RUN set -ex \
     && sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/${IMAGE_ARG_APT_MIRROR:-archive.ubuntu.com}\/ubuntu\//g" /etc/apt/sources.list \
-    && apt-get -y update \
-    && apt-get -yq install apt-transport-https gnupg2 software-properties-common \
     && groupadd -f docker \
     && apt-key add /data/docker_ubuntu_gpg && rm -f /data/docker_ubuntu_gpg \
     && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) edge" \
