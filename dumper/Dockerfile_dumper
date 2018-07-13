@@ -1,5 +1,5 @@
 
-FROM cirepo/nix:2.0.4_bionic
+FROM cirepo/nix:2.0.4-bionic
 
 
 COPY --chown=ubuntu:ubuntu docker /home/ubuntu/data

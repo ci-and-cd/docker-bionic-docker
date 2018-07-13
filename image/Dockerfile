@@ -1,5 +1,5 @@
 
-FROM cirepo/nix:2.0.4_bionic
+FROM cirepo/nix:2.0.4-bionic
 
 
 ARG IMAGE_ARG_APT_MIRROR
