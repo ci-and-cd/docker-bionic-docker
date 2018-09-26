@@ -1,5 +1,5 @@
 
-FROM cirepo/nix:2.0.4-bionic
+FROM cirepo/nix:2.1.1-bionic
 
 
 ARG IMAGE_ARG_APT_MIRROR
@@ -56,7 +56,7 @@ RUN set -ex \
     && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) nightly" \
     && apt-get -y update \
     && apt-cache madison docker-ce \
-    && apt-get -yq install docker-ce=${IMAGE_ARG_DOCKERCE_VERSION:-18.05.0~ce~3-0}~ubuntu \
+    && apt-get -yq install docker-ce=${IMAGE_ARG_DOCKERCE_VERSION:-18.06.1~ce~3-0}~ubuntu \
     && apt-get -q -y autoremove \
     && apt-get -q -y clean && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/*.bin \
     && if [ ! -f /data/docker-compose-Linux-x86_64 ]; then ${ARIA2C_DOWNLOAD} -d /data -o docker-compose-Linux-x86_64 ${IMAGE_ARG_FILESERVER:-https://github.com}/docker/compose/releases/download/${IMAGE_ARG_DOCKERCOMPOSE_VERSION:-1.21.2}/docker-compose-Linux-x86_64; fi \

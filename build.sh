@@ -11,7 +11,7 @@ if [ -n "${CI_OPT_DOCKER_REGISTRY_PASS}" ] && [ -n "${CI_OPT_DOCKER_REGISTRY_USE
 
 export IMAGE_PREFIX=${IMAGE_PREFIX:-cirepo};
 export IMAGE_NAME=${IMAGE_NAME:-docker}
-export IMAGE_TAG=$(echo ${IMAGE_ARG_DOCKERCE_VERSION:-18.05.0~ce~3-0} | awk -F'~' '{print $1}')-bionic
+export IMAGE_TAG=$(echo ${IMAGE_ARG_DOCKERCE_VERSION:-18.06.1~ce~3-0} | awk -F'~' '{print $1}')-bionic
 if [ "${TRAVIS_BRANCH}" != "master" ]; then export IMAGE_TAG=${IMAGE_TAG}-SNAPSHOT; fi
 
 # Build image
