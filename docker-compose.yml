@@ -14,7 +14,7 @@ services:
       - IMAGE_ARG_DOCKERCE_VERSION=${IMAGE_ARG_DOCKERCE_VERSION:-18.06.1~ce~3-0}
       - IMAGE_ARG_DOCKERCOMPOSE_VERSION=${IMAGE_ARG_DOCKERCOMPOSE_VERSION:-1.21.2}
       - IMAGE_ARG_DOCKERMACHINE_VERSION=${IMAGE_ARG_DOCKERMACHINE_VERSION:-0.14.0}
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-docker}:${IMAGE_TAG:-18.06.1-bionic}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-docker}:${IMAGE_TAG:-18.06.1-bionic}
   #docker-compose build dumper
   dumper:
     build:
@@ -26,4 +26,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_archive
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-docker}:${IMAGE_TAG:-18.06.1-bionic}-archive
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-docker}:${IMAGE_TAG:-18.06.1-bionic}-archive
