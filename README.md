@@ -11,6 +11,6 @@ Dockerfile [ci-and-cd/docker-bionic-docker on Github](https://github.com/ci-and-
 ```dockerfile
 
 FROM ubuntu:18.04
-COPY --from=cirepo/docker:18.06.1-bionic /data/root /
+COPY --from=cirepo/docker:18.09.3-bionic /data/root /
 
 ```

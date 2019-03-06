@@ -1,5 +1,5 @@
 
-FROM cirepo/nix:2.1.1-bionic
+FROM cirepo/nix:2.2.1-bionic
 
 
 ARG IMAGE_ARG_APT_MIRROR
@@ -56,12 +56,17 @@ RUN set -ex \
     && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) nightly" \
     && apt-get -y update \
     && apt-cache madison docker-ce \
-    && apt-get -yq install docker-ce=${IMAGE_ARG_DOCKERCE_VERSION:-18.06.1~ce~3-0}~ubuntu \
+    && DOCKER_VER=$(apt-cache madison docker-ce | grep ${IMAGE_ARG_DOCKERCE_VERSION:-18.09.3} | head -n 1 | cut -d '|' -f 2 | sed -e 's/[[:space:]]*//') \
+    && apt-get -yq install docker-ce=${DOCKER_VER} \
     && apt-get -q -y autoremove \
     && apt-get -q -y clean && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/*.bin \
-    && if [ ! -f /data/docker-compose-Linux-x86_64 ]; then ${ARIA2C_DOWNLOAD} -d /data -o docker-compose-Linux-x86_64 ${IMAGE_ARG_FILESERVER:-https://github.com}/docker/compose/releases/download/${IMAGE_ARG_DOCKERCOMPOSE_VERSION:-1.21.2}/docker-compose-Linux-x86_64; fi \
+    && if [ ! -f /data/docker-compose-Linux-x86_64 ]; then ${ARIA2C_DOWNLOAD} -d /data -o docker-compose-Linux-x86_64 ${IMAGE_ARG_FILESERVER:-https://github.com}/docker/compose/releases/download/${IMAGE_ARG_DOCKERCOMPOSE_VERSION:-1.23.2}/docker-compose-Linux-x86_64; fi \
     && mv /data/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose \
-    && if [ ! -f /data/docker-machine-Linux-x86_64 ]; then ${ARIA2C_DOWNLOAD} -d /data -o docker-machine-Linux-x86_64 ${IMAGE_ARG_FILESERVER:-https://github.com}/docker/machine/releases/download/v${IMAGE_ARG_DOCKERMACHINE_VERSION:-0.14.0}/docker-machine-Linux-x86_64; fi \
+    && if [ ! -f /data/docker-machine-Linux-x86_64 ]; then ${ARIA2C_DOWNLOAD} -d /data -o docker-machine-Linux-x86_64 ${IMAGE_ARG_FILESERVER:-https://github.com}/docker/machine/releases/download/v${IMAGE_ARG_DOCKERMACHINE_VERSION:-0.16.1}/docker-machine-Linux-x86_64; fi \
     && mv /data/docker-machine-Linux-x86_64 /usr/local/bin/docker-machine \
     && chmod +x /usr/local/bin/docker-machine
+
+
+ENV PATH /usr/local/bin:${PATH}
+USER ubuntu

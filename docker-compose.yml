@@ -11,10 +11,10 @@ services:
       - IMAGE_ARG_APT_MIRROR=${IMAGE_ARG_APT_MIRROR:-mirrors.163.com}
       - IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER}
       #- IMAGE_ARG_FILESERVER=${IMAGE_ARG_FILESERVER:-http://fileserver.infra.top}
-      - IMAGE_ARG_DOCKERCE_VERSION=${IMAGE_ARG_DOCKERCE_VERSION:-18.06.1~ce~3-0}
-      - IMAGE_ARG_DOCKERCOMPOSE_VERSION=${IMAGE_ARG_DOCKERCOMPOSE_VERSION:-1.21.2}
-      - IMAGE_ARG_DOCKERMACHINE_VERSION=${IMAGE_ARG_DOCKERMACHINE_VERSION:-0.14.0}
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-docker}:${IMAGE_TAG:-18.06.1-bionic}
+      - IMAGE_ARG_DOCKERCE_VERSION=${IMAGE_ARG_DOCKERCE_VERSION:-18.09.3}
+      - IMAGE_ARG_DOCKERCOMPOSE_VERSION=${IMAGE_ARG_DOCKERCOMPOSE_VERSION:-1.23.2}
+      - IMAGE_ARG_DOCKERMACHINE_VERSION=${IMAGE_ARG_DOCKERMACHINE_VERSION:-0.16.1}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-docker}:${IMAGE_TAG:-18.09.3-bionic}
   #docker-compose build dumper
   dumper:
     build:
@@ -26,4 +26,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_archive
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-docker}:${IMAGE_TAG:-18.06.1-bionic}-archive
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-docker}:${IMAGE_TAG:-18.09.3-bionic}-archive
